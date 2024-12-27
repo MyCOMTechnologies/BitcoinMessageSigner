@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerik="http://schemas.telerik.com/2022/xaml/maui"
+             xmlns:vm="clr-namespace:BitcoinMessageSigner.ViewModels"
+             xmlns:strings="clr-namespace:BitcoinMessageSigner.Resources.Strings"
+             xmlns:local="clr-namespace:BitcoinMessageSigner"
+             x:Class="BitcoinMessageSigner.Pages.MainPage"
+             x:DataType="vm:MainPageViewModel"
+             BackgroundColor="{StaticResource Primary}">
+
+    <StackLayout Padding="20">
+        <telerik:RadTabView x:Name="tabView" BackgroundColor="{StaticResource Secondary}">
+            
+            <telerik:TabViewItem HeaderText="Mnemonic">
+                <Grid Padding="20" RowSpacing="10" ColumnSpacing="15" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
+
+                    <Label Text="{Binding ErrorMessage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Red" />
+
+                    <Label Text="{x:Static strings:AppResources.Mnemonic}" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding Mnemonic}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <Label Text="{x:Static strings:AppResources.BitcoinAddress}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding BitcoinAddress}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <Label Text="{x:Static strings:AppResources.Message}" VerticalOptions="Center" Grid.Row="3" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding Message}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <telerik:RadButton x:Name="SignMnemonic" Text="{x:Static strings:AppResources.SignMessage}" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" />
+
+                    <Label Text="{x:Static strings:AppResources.SignedMessage}" VerticalOptions="Center" Grid.Row="5" Grid.Column="0" />
+                    <telerik:DataFormMultiLineEditor PropertyName="SignedMessage" IsReadOnly="True" Grid.Row="5" Grid.Column="1" />
+                    <Label Text="{StaticResource CopyIcon}" FontFamily="FontAwesome" FontSize="24" VerticalOptions="Center" Grid.Row="5" Grid.Column="2" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="CopyMnemonicSignedMessage" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <telerik:DataFormMultiLineEditor PropertyName="MnemonicExplanation" IsReadOnly="True" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" />
+
+                </Grid>
+            </telerik:TabViewItem>
+            
+            <telerik:TabViewItem HeaderText="WIF">
+                <Grid Padding="20" RowSpacing="10" ColumnSpacing="15" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
+
+                    <Label Text="{Binding ErrorMessage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Red" />
+
+                    <Label Text="{x:Static strings:AppResources.Wif}" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding Wif}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+
+                    <Label Text="{x:Static strings:AppResources.BitcoinAddress}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding BitcoinAddress}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <Label Text="{x:Static strings:AppResources.Message}" VerticalOptions="Center" Grid.Row="3" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding Message}" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <telerik:RadButton x:Name="SignWif" Text="{x:Static strings:AppResources.SignMessage}" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" />
+
+                    <Label Text="{x:Static strings:AppResources.SignedMessage}" VerticalOptions="Center" Grid.Row="5" Grid.Column="0" />
+                    <telerik:DataFormMultiLineEditor PropertyName="SignedMessage" IsReadOnly="True" Grid.Row="5" Grid.Column="1" />
+                    <Label Text="{StaticResource CopyIcon}" FontFamily="FontAwesome" FontSize="24" VerticalOptions="Center" Grid.Row="5" Grid.Column="2" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="CopyWifSignedMessage" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <telerik:DataFormMultiLineEditor PropertyName="WifExplanation" IsReadOnly="True" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" />
+
+                </Grid>
+            </telerik:TabViewItem>
+
+            <telerik:TabViewItem HeaderText="Ledger">
+                <Grid Padding="20" RowSpacing="10" ColumnSpacing="15" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnDefinitions="Auto,*,Auto">
+
+                    <Label Text="{Binding ErrorMessage}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" TextColor="Red" />
+
+                    <Label Text="{x:Static strings:AppResources.BitcoinAddress}" VerticalOptions="Center" Grid.Row="1" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding BitcoinAddress}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <Label Text="{x:Static strings:AppResources.Message}" VerticalOptions="Center" Grid.Row="2" Grid.Column="0" />
+                    <telerik:RadEntry Text="{Binding Message}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+
+                    <telerik:RadButton x:Name="SignLedger" Text="{x:Static strings:AppResources.SignMessage}" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" />
+
+                    <Label Text="{x:Static strings:AppResources.SignedMessage}" VerticalOptions="Center" Grid.Row="4" Grid.Column="0" />
+                    <telerik:DataFormMultiLineEditor PropertyName="SignedMessage" IsReadOnly="True" Grid.Row="4" Grid.Column="1" />
+                    <Label Text="{StaticResource CopyIcon}" FontFamily="FontAwesome" FontSize="24" VerticalOptions="Center" Grid.Row="4" Grid.Column="2" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="CopyLedgerSignedMessage" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <telerik:DataFormMultiLineEditor PropertyName="LedgerExplanation" IsReadOnly="True" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" />
+
+                </Grid>
+            </telerik:TabViewItem>
+        
+        </telerik:RadTabView>
+    </StackLayout>
+
+</ContentPage>
